@@ -13,24 +13,46 @@ import java.util.ArrayList;
 public class Student {
 
     // field
-    private String id;
-    private String hw;
-    private String score;
+    private String ID;
+    ArrayList<Homework> HW = new ArrayList<Homework>();
 
     // constructor
-
-    Student(String id, String hw ,String score) {
-        this.id = id;
-        this.hw = hw;
-        this.score = score;
+    Student(String id, String hw, String score) {
+        ID = id;
+        HW.add(new Homework(hw, score));
     }
 
-    Student() {
-        this.id = null;
-        this.hw = null;
-        this.score = null;
+    Student(String id) {
+        ID = id;
     }
-    
-    
-   
+
+    // method
+    boolean checkID(String id) {
+        return ID.equals(id);
+    }
+
+    boolean isSubmit(String hw) {
+        for (Homework h : HW) {
+            if (h.getHomework().equals(hw)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void printSubmitScore(String hw) {
+        for (Homework h : HW) {
+            if (h.getHomework().equals(hw)) {
+                System.out.printf(" %2d ", Integer.parseInt(h.getScore()));
+                break;
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        System.out.print(this.ID);
+        return "";
+    }
+
 }
